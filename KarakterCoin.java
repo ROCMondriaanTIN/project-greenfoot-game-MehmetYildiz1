@@ -19,5 +19,5 @@ public class KarakterCoin extends Mover
     public void act(){
         applyVelocity();
     }
-      
+    
 }

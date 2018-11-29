@@ -1,3 +1,4 @@
+
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
@@ -8,8 +9,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class ButtonNotPressed extends Mover
 {
+    public int imageNumber;
     
-    public String type;
     
     public ButtonNotPressed(String image) {
         setImage(image);
@@ -17,6 +18,10 @@ public class ButtonNotPressed extends Mover
     
     public void act(){
         applyVelocity();
+        if(isTouching(Hero.class)){
+          setImage("buttonYellow_pressed.png");
+          return;
+        }
     }
-      
+     
 }

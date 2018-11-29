@@ -26,35 +26,28 @@ import greenfoot.*;
       public class Hero extends Mover {
      
         private final double gravity;
+        private boolean rechts;
         private final double acc;
         private final double drag;
-        
+        private int frame = 1;
         private double jumpHeight;
         private double right;
-        private double playerTreeAcc = 2;
-        private double playerOneAcc = 4;
+        private double playerTreeAcc = 4;
+        private double playerOneAcc = 5;
         private double left;
-        private double playerOneDrag = -4;
-        private double playerTreeDrag = -2;
-        private double playerOneJumpHeight = -13;
+        private double playerOneDrag = -5;
+        private double playerTreeDrag = -4;
+        private double playerOneJumpHeight = -16;
         private double playerTwoJumpHeight = -19;
-        private double playerTreeJumpHeight = -10;
+        private double playerTreeJumpHeight = -14;
         private GreenfootImage player1 = new GreenfootImage("p1.png");
         private GreenfootImage player2 = new GreenfootImage("p2_walk11.png");
         private GreenfootImage player3 = new GreenfootImage("p3_walk11.png");
-        private GreenfootImage walk1 = new GreenfootImage("p1_walk01.png");
-        private GreenfootImage walk2 = new GreenfootImage("p1_walk02.png");
-        private GreenfootImage walk3 = new GreenfootImage("p1_walk03.png");
-        private GreenfootImage walk4 = new GreenfootImage("p1_walk04.png");
-        private GreenfootImage walk5 = new GreenfootImage("p1_walk05.png");
-        private GreenfootImage walk6 = new GreenfootImage("p1_walk06.png");
-        private GreenfootImage walk7 = new GreenfootImage("p1_walk07.png");
-        private GreenfootImage walk8 = new GreenfootImage("p1_walk08.png");
-        private GreenfootImage walk9 = new GreenfootImage("p1_walk09.png");
-        private GreenfootImage walk10 = new GreenfootImage("p1_walk10.png");
-        private GreenfootImage walk11 = new GreenfootImage("p1_walk11.png");
-        private boolean rechts;
+        public static int key = 0;
         private boolean mirror;
+        
+        public static boolean hasKeyBlue;
+        //public static int lives = 1;
 
         public Hero() {
 
@@ -66,7 +59,8 @@ import greenfoot.*;
         right = playerOneAcc;
         left = playerOneDrag;
         setImage("p1.png");
-
+        
+        
        
        }
 
@@ -79,6 +73,11 @@ import greenfoot.*;
         handleInput();
         velocityX *= drag;
         velocityY += acc;
+        getWorld().showText("Key = " + Integer.toString(key), 950, 50);
+        getWorld().showText("x =" + Integer.toString(getX()), 950, 75);
+        getWorld().showText("y =" + Integer.toString(getY()), 950, 100);
+       //getWorld().showText("lives = " + Integer.toString(lives), 950, 75);
+       
 
         if (velocityY > gravity) {
 
@@ -97,7 +96,7 @@ import greenfoot.*;
 
 
 
-                setLocation(150,478);
+                Greenfoot.setWorld(new GameOver());
                 setImage(player1);
                 jumpHeight = playerOneJumpHeight;
                 right = playerOneAcc;
@@ -114,7 +113,7 @@ import greenfoot.*;
 
 
 
-                setLocation(150,478);
+                Greenfoot.setWorld(new GameOver());
                 setImage(player1);
                 jumpHeight = playerOneJumpHeight;
                 right = playerOneAcc;
@@ -129,7 +128,7 @@ import greenfoot.*;
         for (Actor enemy : getIntersectingObjects(LavaTile.class)) {
             if (enemy != null) {
 
-                setLocation(150,478);
+                Greenfoot.setWorld(new GameOver());
                 setImage(player1);
                 jumpHeight = playerOneJumpHeight;
                 right = playerOneAcc;
@@ -160,20 +159,29 @@ import greenfoot.*;
                 break;
             }
         }
+        
       }
+     // public boolean isAtEdge() {
+     //  boolean Edge = false;
+     //  ifisTouching(Hero.class)){
+     //      
+     //   }
+     //  return; 
+     // }
      
+   
 
         public boolean onGround() {
           Actor under = getOneObjectAtOffset (0, getHeight ()/2, Tile.class);
           Tile tile = (Tile) under;
           return tile != null && tile.isSolid == true;
         }
-
+     
         public void handleInput() {
 
         if (Greenfoot.isKeyDown("w")&& velocityY == 0 || isTouching(Rope.class)) {
             velocityY = jumpHeight;
-            
+            setImage("p1_jump.png");
         }
         if (Greenfoot.isKeyDown("s")) {
             velocityY = 5;
@@ -182,12 +190,66 @@ import greenfoot.*;
         }    
         if (Greenfoot.isKeyDown("a")) {
             velocityX = left;
+            animate();
+            rechts = false;
         } else if (Greenfoot.isKeyDown("d")) {
             velocityX = right;
+            animate();
+            rechts = true;
         }
-      }
-      
-      
+     }
+     
+     public void animate() {
+         
+         switch(frame) {
+         case 1:
+         setImage("p1_walk01.png");
+         break;
+         case 2:
+         setImage("p1_walk02.png");
+         break;
+         case 3:
+         setImage("p1_walk03.png");
+         break;
+         case 4:
+         setImage("p1_walk04.png");
+         break;
+         case 5:
+         setImage("p1_walk05.png");
+         break;
+         case 6:
+         setImage("p1_walk06.png");
+         break;
+         case 7:
+         setImage("p1_walk07.png");
+         break;
+         case 8:
+         setImage("p1_walk08.png");
+         break;
+         case 9:
+         setImage("p1_walk09.png");
+         break;
+         case 10:
+         setImage("p1_walk10.png");
+         break;
+         case 11:
+         setImage("p1_walk11.png");
+         
+         frame = 0;
+         break;
+         }
+        
+         frame ++;
+         mirrorImage();
+     }
+     public void mirrorImage() {
+        if (mirror && rechts) {
+            getImage().mirrorHorizontally();
+        }
+        else if (!mirror && !rechts) {
+            getImage().mirrorHorizontally();
+        }
+     } 
         
 
       public void kill(){

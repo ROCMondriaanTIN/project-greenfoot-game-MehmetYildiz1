@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.2" tiledversion="1.2.0" name="image" tilewidth="914" tileheight="936" tilecount="178" columns="0">
+<tileset version="1.2" tiledversion="1.2.0" name="image" tilewidth="914" tileheight="936" tilecount="179" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="0">
   <image width="256" height="256" source="../images/bg.png"/>
@@ -534,5 +534,8 @@
  </tile>
  <tile id="177">
   <image width="70" height="70" source="../images/window.png"/>
+ </tile>
+ <tile id="178">
+  <image width="70" height="70" source="../../../buttonYellow - kopie.png"/>
  </tile>
 </tileset>

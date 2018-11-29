@@ -51,7 +51,10 @@ import greenfoot.*;
 
         }
         applyVelocity();
-      
+        if(isTouching(Hero.class)){
+          setImage("buttonYellow_pressed.png");
+        
+        }
     } 
 }
     
