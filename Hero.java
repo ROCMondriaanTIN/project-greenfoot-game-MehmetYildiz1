@@ -109,7 +109,23 @@ import greenfoot.*;
 
             }
         }
+        for (Actor weight : getIntersectingObjects(WeightFalling.class)) {
+            if (weight != null) {
 
+
+
+                setLocation(150,478);
+                setImage(player1);
+                jumpHeight = playerOneJumpHeight;
+                right = playerOneAcc;
+                left = playerOneDrag;
+
+                return;
+
+
+
+            }
+        }
         for (Actor enemy : getIntersectingObjects(LavaTile.class)) {
             if (enemy != null) {
 
@@ -141,12 +157,11 @@ import greenfoot.*;
                     jumpHeight = playerTreeJumpHeight;
                     getWorld().removeObject(coin);
                 }
-                
                 break;
-
             }
         }
       }
+     
 
         public boolean onGround() {
           Actor under = getOneObjectAtOffset (0, getHeight ()/2, Tile.class);
@@ -171,11 +186,8 @@ import greenfoot.*;
             velocityX = right;
         }
       }
-     // public void touching() {
-    //    if (hero.class =
-     // }
       
-          
+      
         
 
       public void kill(){

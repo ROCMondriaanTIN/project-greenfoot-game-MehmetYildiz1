@@ -44,5 +44,20 @@ public class Enemy extends Mover {
             x = xMin;
             getImage().mirrorHorizontally();
         }
+        for (Actor weight : getIntersectingObjects(WeightFalling.class)) {
+            if (weight != null) {
+
+
+
+                getWorld().removeObject(this);
+                
+
+                return;
+
+
+
+            }
+        }
     }
+    
 }
