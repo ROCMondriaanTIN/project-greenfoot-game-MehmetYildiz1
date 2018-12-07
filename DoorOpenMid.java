@@ -23,15 +23,31 @@ public class DoorOpenMid extends Tile
         if (hero != null && getWorld() instanceof MyWorld) {
             TestWorld Test = new TestWorld();
             Greenfoot.setWorld(Test);
-            //Hero.key = 0;
+            Hero.key = 0;
+            Hero.hasKeyBlue = false;
             break; 
         }
+        if (hero != null && getWorld() instanceof TestWorld) {
+            ThirdWorld World = new ThirdWorld();
+            Greenfoot.setWorld(World);
+            Hero.key = 0;
+            Hero.hasKeyBlue = false;
+            break;
+           }
         if (hero != null && getWorld() instanceof MyWorld) {
             MyWorld World = new MyWorld();
             Greenfoot.setWorld(World);
-            //Hero.key = 0;
+            Hero.key = 0;
+            Hero.hasKeyBlue = false;
             break;
-           }
+        }
+        if (hero != null && getWorld() instanceof ThirdWorld) {
+            VictoryWorld Test = new VictoryWorld();
+            Greenfoot.setWorld(Test);
+            Hero.key = 0;
+            Hero.hasKeyBlue = false;
+            break; 
+        }
        }
     }
     }

@@ -33,6 +33,8 @@ public class KeyBlue extends Tile {
             getWorld().removeObject(this);
             Hero.hasKeyBlue = true;
             Hero.key++;
+            
         }
     }
+    
 }

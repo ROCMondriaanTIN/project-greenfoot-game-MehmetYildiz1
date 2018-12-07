@@ -16,13 +16,21 @@ public class GameOver extends World
     public GameOver()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(100, 800, 1,false); 
+        super(1000, 800, 1,false); 
         this.setBackground("bg.png");
+        
+        
+        
         prepare();
     }
     private void prepare() {
-        GameOverScreen screen = new GameOverScreen();
-        addObject(screen,0, 0);
-    
+        GameOverScreen gameOverScreen = new GameOverScreen();
+        addObject(gameOverScreen,520, 351);
+        PressSpace space = new PressSpace();
+        addObject(space,300, 651);
+        lvl2 lvl = new lvl2();
+        addObject(lvl,430, 651);
+        lvl3 lv = new lvl3();
+        addObject(lv,560, 651);
     }
 }

@@ -45,7 +45,7 @@ import greenfoot.*;
         private GreenfootImage player3 = new GreenfootImage("p3_walk11.png");
         public static int key = 0;
         private boolean mirror;
-        
+        private int n = 1;
         public static boolean hasKeyBlue;
         //public static int lives = 1;
 
@@ -128,12 +128,11 @@ import greenfoot.*;
         for (Actor enemy : getIntersectingObjects(LavaTile.class)) {
             if (enemy != null) {
 
-                Greenfoot.setWorld(new GameOver());
                 setImage(player1);
                 jumpHeight = playerOneJumpHeight;
                 right = playerOneAcc;
                 left = playerOneDrag;
-                kill();
+                Greenfoot.setWorld(new GameOver());
                 return;
 
             }
@@ -148,6 +147,8 @@ import greenfoot.*;
                     setImage(player2);
                     jumpHeight = playerTwoJumpHeight;
                     getWorld().removeObject(coin);
+                    n = 2;
+                    //kill();
                 }
                 else if(coin.type.equals("roze")) {
                     setImage(player3);
@@ -155,6 +156,8 @@ import greenfoot.*;
                     left = playerTreeDrag;
                     jumpHeight = playerTreeJumpHeight;
                     getWorld().removeObject(coin);
+                    n = 3;
+                    //kill();
                 }
                 break;
             }
@@ -181,20 +184,28 @@ import greenfoot.*;
 
         if (Greenfoot.isKeyDown("w")&& velocityY == 0 || isTouching(Rope.class)) {
             velocityY = jumpHeight;
-            setImage("p1_jump.png");
+            setImage("p"+n+"_jump.png");
         }
         if (Greenfoot.isKeyDown("s")) {
             velocityY = 5;
-            setImage("p1_duck.png");
+            setImage("p"+n+"_duck.png");
 
-        }    
+        }   
+        if (Greenfoot.isKeyDown("space")) {
+            
+         Greenfoot.setWorld(new GameOver());
+       
+    
+        }
         if (Greenfoot.isKeyDown("a")) {
             velocityX = left;
             animate();
+          
             rechts = false;
         } else if (Greenfoot.isKeyDown("d")) {
             velocityX = right;
             animate();
+         
             rechts = true;
         }
      }
@@ -203,37 +214,37 @@ import greenfoot.*;
          
          switch(frame) {
          case 1:
-         setImage("p1_walk01.png");
+         setImage("p"+n+"_walk01.png");
          break;
          case 2:
-         setImage("p1_walk02.png");
+         setImage("p"+n+"_walk02.png");
          break;
          case 3:
-         setImage("p1_walk03.png");
+         setImage("p"+n+"_walk03.png");
          break;
          case 4:
-         setImage("p1_walk04.png");
+         setImage("p"+n+"_walk04.png");
          break;
          case 5:
-         setImage("p1_walk05.png");
+         setImage("p"+n+"_walk05.png");
          break;
          case 6:
-         setImage("p1_walk06.png");
+         setImage("p"+n+"_walk06.png");
          break;
          case 7:
-         setImage("p1_walk07.png");
+         setImage("p"+n+"_walk07.png");
          break;
          case 8:
-         setImage("p1_walk08.png");
+         setImage("p"+n+"_walk08.png");
          break;
          case 9:
-         setImage("p1_walk09.png");
+         setImage("p"+n+"_walk09.png");
          break;
          case 10:
-         setImage("p1_walk10.png");
+         setImage("p"+n+"_walk10.png");
          break;
          case 11:
-         setImage("p1_walk11.png");
+         setImage("p"+n+"_walk11.png");
          
          frame = 0;
          break;
@@ -242,7 +253,8 @@ import greenfoot.*;
          frame ++;
          mirrorImage();
      }
-     public void mirrorImage() {
+  
+    public void mirrorImage() {
         if (mirror && rechts) {
             getImage().mirrorHorizontally();
         }
@@ -267,7 +279,8 @@ import greenfoot.*;
         return getImage().getHeight();
 
     }
-  }
+  
+}
 
 
 
