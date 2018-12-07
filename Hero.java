@@ -47,6 +47,7 @@ import greenfoot.*;
         private boolean mirror;
         private int n = 1;
         public static boolean hasKeyBlue;
+        public static int money;
         //public static int lives = 1;
 
         public Hero() {
@@ -74,8 +75,9 @@ import greenfoot.*;
         velocityX *= drag;
         velocityY += acc;
         getWorld().showText("Key = " + Integer.toString(key), 950, 50);
-        getWorld().showText("x =" + Integer.toString(getX()), 950, 75);
-        getWorld().showText("y =" + Integer.toString(getY()), 950, 100);
+        getWorld().showText("Punten = " + Integer.toString(money), 950, 75);
+        getWorld().showText("x =" + Integer.toString(getX()), 950, 100);
+        getWorld().showText("y =" + Integer.toString(getY()), 950, 125);
        //getWorld().showText("lives = " + Integer.toString(lives), 950, 75);
        
 
@@ -192,8 +194,8 @@ import greenfoot.*;
 
         }   
         if (Greenfoot.isKeyDown("space")) {
-            
-         Greenfoot.setWorld(new GameOver());
+            velocityY = -7;
+         //Greenfoot.setWorld(new GameOver());
        
     
         }
