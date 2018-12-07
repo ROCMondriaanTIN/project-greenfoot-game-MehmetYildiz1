@@ -194,8 +194,8 @@ import greenfoot.*;
 
         }   
         if (Greenfoot.isKeyDown("space")) {
-            velocityY = -7;
-         //Greenfoot.setWorld(new GameOver());
+            
+         Greenfoot.setWorld(new GameOver());
        
     
         }
